@@ -1,0 +1,2 @@
+import { createSupabaseServerClient } from "../../../../lib/supabase/server"; import { json, errorResponse } from "../../../../lib/api";
+export async function POST(request){try{const body=await request.json();const supabase=await createSupabaseServerClient();const {error}=await supabase.auth.signInWithPassword({email:body.email,password:body.password});if(error)throw error;return json({ok:true});}catch(e){return errorResponse(e);}}

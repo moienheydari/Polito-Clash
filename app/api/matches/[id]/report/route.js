@@ -1,0 +1,2 @@
+import { requireUser, createAdminClient } from "../../../../../lib/supabase/server"; import { json,errorResponse } from "../../../../../lib/api";
+export async function GET(request,{params}){try{const user=await requireUser();const {id}=await params;const admin=createAdminClient();const {data}=await admin.from("reports").select("report_json").eq("match_id",id).eq("user_id",user.id).single();if(!data)throw new Error("Your report is not ready yet");return json(data.report_json);}catch(e){return errorResponse(e);}}

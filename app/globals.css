@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f6f7fb; color: #172033; font-family: Arial, Helvetica, sans-serif; }
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+.btn { @apply rounded-xl px-5 py-3 font-bold transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50; }
+.btn-primary { @apply btn bg-orange text-white shadow-lg shadow-orange/20; }
+.btn-secondary { @apply btn bg-navy text-white; }
+.card { @apply rounded-3xl bg-white p-6 shadow-card; }
+.label { @apply mb-2 block text-sm font-bold text-slate-600; }
+.field { @apply w-full rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none transition focus:border-orange focus:ring-4 focus:ring-orange/10; }

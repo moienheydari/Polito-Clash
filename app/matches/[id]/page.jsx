@@ -146,9 +146,9 @@ export default function Match() {
   );
 
   return (
-    <div className="min-h-screen bg-[#f7f7f4] md:flex">
-      <aside className="hidden w-72 shrink-0 bg-navy p-5 md:block">
-        <a href="/dashboard" className="block rounded-2xl bg-white p-4 text-2xl font-black text-navy">
+    <div className="min-h-screen bg-[#f3f0e8] md:flex">
+      <aside className="hidden w-72 shrink-0 border-r-[3px] border-black bg-[#123047] p-5 md:block">
+        <a href="/dashboard" className="neo-panel block bg-white p-4 text-2xl font-black text-navy">
           Polito <span className="text-orange">Clash</span>
         </a>
         <div className="clash-sidebar-card mt-5">
@@ -178,17 +178,20 @@ export default function Match() {
       <div className="min-w-0 flex-1">
         <Nav />
         <main className="mx-auto max-w-7xl p-4 md:p-8">
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div className="neo-panel mb-4 flex flex-wrap items-center justify-between gap-4 bg-white p-4">
           <div>
-            <p className="font-bold uppercase tracking-widest text-orange">
-              {match.phase}
-            </p>
+            <div className="mb-3 flex flex-wrap gap-2">
+              <span className="neo-badge">Question {(match.current_question_index || 0) + 1} / {match.question_count}</span>
+              <span className="neo-badge">Open response</span>
+              <span className="neo-badge bg-[#ffe0ae]">AI difficulty · Medium</span>
+            </div>
+            <p className="font-bold uppercase tracking-widest text-orange">{match.phase}</p>
             <h1 className="text-3xl font-black text-navy">{match.title}</h1>
             <p className="mt-1 text-slate-500">
               Room code <b>{match.join_code}</b> · {match.documents?.filename}
             </p>
           </div>
-          <div className="rounded-2xl bg-orange px-6 py-3 text-center text-white">
+          <div className="border-[3px] border-black bg-orange px-6 py-3 text-center text-white shadow-[5px_5px_0_#111827]">
             <div className="text-3xl font-black">{remaining}s</div>
             <div className="text-xs font-bold uppercase">remaining</div>
           </div>
@@ -209,20 +212,15 @@ export default function Match() {
 
         {match.phase !== "waiting" && (
           <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
-            <section className="card">
-              <div className="mb-5 flex items-center justify-between">
-                <span className="font-bold text-slate-500">
-                  Question {(match.current_question_index || 0) + 1} /{" "}
-                  {match.question_count}
-                </span>
-                <span className="rounded-full bg-slate-100 px-3 py-1 text-sm font-bold">
-                  {state.question?.topic}
-                </span>
+            <section className="neo-panel bg-white p-5 md:p-7">
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-[3px] border-black bg-[#e6f0f3] p-3">
+                <span className="font-black">👥 Multiplayer match · {players.length} students live</span>
+                <span className="font-black">📄 Based on lecture slides · {state.question?.topic}</span>
               </div>
 
               {state.question && (
                 <>
-                  <h2 className="text-2xl font-black leading-snug text-navy">
+                  <h2 className="border-l-[10px] border-orange bg-[#f8f8f5] p-5 text-3xl font-black leading-snug text-navy shadow-[4px_4px_0_#111827]">
                     {state.question.question_text}
                   </h2>
 
@@ -230,7 +228,7 @@ export default function Match() {
                     <>
                       <textarea
                         disabled={state.submitted || remaining === 0}
-                        className="field mt-8 min-h-48 resize-y"
+                        className="field mt-8 min-h-48 resize-y text-lg"
                         value={answer}
                         onChange={(event) => setAnswer(event.target.value)}
                         placeholder="Explain your reasoning..."
@@ -238,7 +236,7 @@ export default function Match() {
                       <button
                         disabled={state.submitted || remaining === 0}
                         onClick={submit}
-                        className="btn-primary mt-5 w-full"
+                        className="btn-primary mt-5 w-full text-xl md:w-auto"
                       >
                         {state.submitted
                           ? "Answer submitted - waiting for your opponent"
@@ -272,7 +270,7 @@ export default function Match() {
               )}
             </section>
 
-            <aside className="card h-fit">
+            <aside className="neo-panel h-fit bg-[#123047] p-5 text-white">
               <h3 className="text-lg font-black text-navy">Leaderboard</h3>
               <div className="mt-5 space-y-4">
                 {sortedPlayers.map((player, index) => (

@@ -146,9 +146,38 @@ export default function Match() {
   );
 
   return (
-    <>
-      <Nav />
-      <main className="mx-auto max-w-7xl p-4 md:p-8">
+    <div className="min-h-screen bg-[#f7f7f4] md:flex">
+      <aside className="hidden w-72 shrink-0 bg-navy p-5 md:block">
+        <a href="/dashboard" className="block rounded-2xl bg-white p-4 text-2xl font-black text-navy">
+          Polito <span className="text-orange">Clash</span>
+        </a>
+        <div className="clash-sidebar-card mt-5">
+          <div className="text-3xl">⚡</div>
+          <p className="mt-2 text-lg font-black">Timed AI Clash</p>
+          <p className="mt-1 text-sm text-slate-300">Open response · 60 seconds</p>
+        </div>
+        <div className="clash-sidebar-card mt-4">
+          <p className="text-sm font-bold uppercase tracking-wider text-orange">
+            Live match
+          </p>
+          <p className="mt-2 font-black">{players.length}/2 students connected</p>
+          <p className="mt-1 text-sm text-slate-300">Questions from your lecture PDF</p>
+        </div>
+        <div className="clash-sidebar-card mt-4">
+          <p className="font-black">Leaderboard</p>
+          <div className="mt-4 space-y-3">
+            {sortedPlayers.map((player, index) => (
+              <div className="flex items-center justify-between text-sm" key={player.user_id}>
+                <span><b className="mr-2 text-orange">{index + 1}</b>{player.profiles?.display_name}</span>
+                <b>{player.total_score}</b>
+              </div>
+            ))}
+          </div>
+        </div>
+      </aside>
+      <div className="min-w-0 flex-1">
+        <Nav />
+        <main className="mx-auto max-w-7xl p-4 md:p-8">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="font-bold uppercase tracking-widest text-orange">
@@ -279,8 +308,9 @@ export default function Match() {
             </a>
           </div>
         )}
-      </main>
-    </>
+        </main>
+      </div>
+    </div>
   );
 }
 

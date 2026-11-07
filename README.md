@@ -1,6 +1,6 @@
-# StudyDuel AI
+# Polito Clash
 
-StudyDuel AI is a two-student, realtime competition prototype built with Next.js, Supabase, OpenAI, and `unpdf`.
+Polito Clash is a two-student, realtime competition prototype built with Next.js, Supabase, OpenAI, and `unpdf`.
 
 ## Local setup
 

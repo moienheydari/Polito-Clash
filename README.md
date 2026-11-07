@@ -22,4 +22,4 @@ Import the repository into Vercel, add all variables from `.env.example` as Prod
 
 ## Known prototype limits
 
-Only text-based PDFs up to 4 MB are supported. OCR, email reset, and a dedicated worker are intentionally omitted. Progress is driven by participant polling with Supabase table changes available for future UI subscriptions; the database remains authoritative.
+Only text-based PDFs up to 4 MB are supported. OCR, email reset, and a dedicated worker are intentionally omitted. Supabase Realtime subscriptions are paired with two-second polling so the database remains authoritative if an event is missed.
